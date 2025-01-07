@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
-  <meta charset="UTF-8">
-  <meta name="Generator" content="EditPlus®">
-  <meta name="Author" content="">
-  <meta name="Keywords" content="">
-  <meta name="Description" content="">
-      <!script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js"></!script>
-    <!script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js"></!script>
-  <title>Document</title>
- </head>
- <body>
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+</head>
+<body>
+ 
+<h1>Menu list</h1>
+<ul id="menu">
+
+</ul>
+ 
 
 <script type='module'>
 // Initialize Firestore through Firebase
@@ -24,14 +24,16 @@ const firebaseApp = initializeApp({
 });
 
 const db = getFirestore();
-
 const querySnapshot = await getDocs(collection(db, "menu"));
+const menu = document.all.menu;
+
 querySnapshot.forEach((doc) => {
-  console.log(`${doc.id} => ${doc.data()}`);
-  console.log(doc.data().name_zh);
+	const n = doc.data().name_zh;
+	menu.innerHTML += "<li>"+n;
+
 });
 
 </script>
 
- </body>
+</body>
 </html>

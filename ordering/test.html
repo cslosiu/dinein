@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+      <!script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js"></!script>
+    <!script src="https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js"></!script>
+  <title>Document</title>
+ </head>
+ <body>
+
+<script type='module'>
+// Initialize Firestore through Firebase
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js"
+import { collection, getDocs, getFirestore } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js"
+
+const firebaseApp = initializeApp({
+  apiKey: 'AIzaSyAk-E1Asdy3cKqYvKGQJq2BapaYuZ1sZnk',
+  authDomain: '',
+  projectId: 'okra-menu'
+});
+
+const db = getFirestore();
+
+const querySnapshot = await getDocs(collection(db, "menu"));
+querySnapshot.forEach((doc) => {
+  console.log(`${doc.id} => ${doc.data()}`);
+  console.log(doc.data().name_zh);
+});
+
+</script>
+
+ </body>
+</html>

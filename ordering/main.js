@@ -16,10 +16,23 @@ const appconfig = {
 }
 //=============================================================
 
-function _(obj,field) 
+// TODO: expand this translation list.
+const translations = {
+	'Ordering': '正在下單',
+};
+
+function _(obj,field="") 
 {
-	const fieldname = `${field}_${appconfig.locale}`;
-	return obj[fieldname];
+	if (field=="")
+	{
+		const t = translations[obj];
+		return t === undefined ? obj : t;
+	}
+	else 
+	{
+		const fieldname = `${field}_${appconfig.locale}`;
+		return obj[fieldname];
+	}
 }
 
 function ccy(num = 0) 
@@ -46,7 +59,7 @@ function itemdetail(item)
 {
 	const name = _(item.data(),"name");
 	const price = ccy(item.data().price);
-	const btn = `<button class="btn btn-primary" onclick="buyitem('${item.id}')">+</button>`;
+	const btn = `<button class="btn btn-primary" onclick="buyitem('${item.id}')"  data-bs-toggle="modal" data-bs-target="#addoption">+</button>`;
 	return `<li class="list-group-item">
 		<div class="container">
 			<div class="row justify-content-md-center">
@@ -77,6 +90,7 @@ function itemgroup(category)
 //=============================================================
 
 settotalamount(0);
+const cart = new FoodCart();
 
 const firebaseApp = initializeApp(fireconfig);
 

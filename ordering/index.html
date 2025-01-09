@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>ORDERING	</title>
 <meta name="viewport" content="width=device-width, initial-scale=1"">
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>
-
+<script src="cart.js"></script>
 </head>
 
 <body class="container">
@@ -16,7 +16,9 @@
 
 
 <div id="summary" class="mb-3">
-	🍽️ <span id="itemcount">0</span> &nbsp;&nbsp;  
+	<button class="btn btn-light" data-bs-toggle="modal" data-bs-target="#cartmodal">
+	🛒 <span id="itemcount">0</span>
+	</button> &nbsp;&nbsp;  
 	💰 <span id="totalamount">$0.00</span>
 </div>
 
@@ -26,6 +28,72 @@
 
 <div id="itemlist" class="mb-3">
 </div>
+
+<div class="modal" id="cartmodal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">🛒 Pending Order</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+		<thead>
+		  <tr><th>Item</th><th>Price</th><th>Qty</th></tr>
+		</thead>
+		<tbody>
+		  <tr id="#itemrowsample"><td>X</td><td>0</td><td>0</td></tr>
+		</tbody>
+		</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" id="addoption" tabindex="-1">
+  <div class="modal-dialog position-fixed bottom-0">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addoption_title" data-bs-title="">Ordering...</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+		showing the options of the food ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+// here shows how to update dialog such as locale support
+const addoption = document.getElementById('addoption')
+if (addoption) {
+  addoption.addEventListener('show.bs.modal', event => {
+    // Button that triggered the modal
+    const button = event.relatedTarget
+    // Extract info from data-bs-* attributes
+    const recipient = button.getAttribute('data-bs-whatever')
+    // If necessary, you could initiate an Ajax request here
+    // and then do the updating in a callback.
+
+    // Update the modal's content.
+	/*
+    const modalTitle = addoption.querySelector('.modal-title')
+    const modalBodyInput = addoption.querySelector('.modal-body input')
+    modalTitle.textContent = `New message to ${recipient}`
+    modalBodyInput.value = recipient
+	*/
+  })
+}
+</script>
 
 <script src="main.js" type='module'></script>
 
